@@ -33,11 +33,23 @@ def upload(filename):
 def transcribe(audio_url):
     transcript_request = {
         'audio_url': audio_url,
-        'language_code': 'fr'
+        'language_code': 'fr',         # o el idioma real
+        'speaker_labels': True         # diarización
     }
 
     transcript_response = requests.post(transcript_endpoint, json=transcript_request, headers=headers)
-    return transcript_response.json()['id']
+    
+   
+    print("TRANSCRIBE RESPONSE:", transcript_response.status_code, transcript_response.json())
+
+    response_data = transcript_response.json()
+    
+    # ✅ Verifica que 'id' está en la respuesta
+    if 'id' in response_data:
+        return response_data['id']
+    else:
+        raise ValueError(f"Transcripción fallida: {response_data}")
+         
 
         
 def poll(transcript_id):
