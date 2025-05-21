@@ -44,7 +44,7 @@ def transcribe(audio_url):
 
     response_data = transcript_response.json()
     
-    # ✅ Verifica que 'id' está en la respuesta
+    
     if 'id' in response_data:
         return response_data['id']
     else:
