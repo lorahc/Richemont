@@ -29,12 +29,12 @@ def upload(filename):
     upload_response = requests.post(upload_endpoint, headers=headers_auth_only, data=read_file(filename))
     return upload_response.json()['upload_url']
 
-
+#this version includes the speaker detection, with the timestamps for each speaker
 def transcribe(audio_url):
     transcript_request = {
         'audio_url': audio_url,
-        'language_code': 'fr',         # o el idioma real
-        'speaker_labels': True         # diarización
+        'language_code': 'fr',         
+        'speaker_labels': True         
     }
 
     transcript_response = requests.post(transcript_endpoint, json=transcript_request, headers=headers)
