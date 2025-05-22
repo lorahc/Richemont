@@ -9,6 +9,5 @@ filename = sys.argv[1]
 
 title=os.path.splitext(os.path.basename(filename))[0]
 
-
 audio_url = upload(filename)
-save_transcript(audio_url, title)
+save_word_timestamps(audio_url, title)
